@@ -1,3 +1,9 @@
+//PROGRAMADORES:
+//Marcos Eduardo Cano M√©ndez 2590-24-3996
+//Diego Antonio Villatoro Escobar 2590-24-7262
+//Brandon Isaac G√≥mez 2590-24-8845
+//Emanuel Bonifacio Garc√≠a Tzoc 2590-24-1555
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -56,33 +62,33 @@ void CrearVehiculo() {
     try {
         cout << "Ingrese la placa del vehiculo: ";
         cin.getline(v.placa, 15);
-        if (strlen(v.placa) == 0) throw runtime_error("La placa no puede estar vacÌa.");
+        if (strlen(v.placa) == 0) throw runtime_error("La placa no puede estar vac√≠a.");
 
         cout << "Ingrese el modelo del vehiculo: ";
         cin.getline(v.modelo, 25);
-        if (strlen(v.modelo) == 0) throw runtime_error("El modelo no puede estar vacÌo.");
+        if (strlen(v.modelo) == 0) throw runtime_error("El modelo no puede estar vac√≠o.");
 
         cout << "Ingrese la marca del vehiculo: ";
         cin.getline(v.marca, 25);
-        if (strlen(v.marca) == 0) throw runtime_error("La marca no puede estar vacÌa.");
+        if (strlen(v.marca) == 0) throw runtime_error("La marca no puede estar vac√≠a.");
 
-        cout << "Ingrese el aÒo del vehiculo: ";
-        if (!(cin >> v.anio)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        cout << "Ingrese el a√±o del vehiculo: ";
+        if (!(cin >> v.anio)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el color del vehiculo: ";
         cin.getline(v.color, 20);
-        if (strlen(v.color) == 0) throw runtime_error("El color no puede estar vacÌo.");
+        if (strlen(v.color) == 0) throw runtime_error("El color no puede estar vac√≠o.");
 
-        cout << "Ingrese el n˙mero de serie del vehiculo: ";
+        cout << "Ingrese el n√∫mero de serie del vehiculo: ";
         cin.getline(v.noSerie, 30);
-        if (strlen(v.noSerie) == 0) throw runtime_error("El n˙mero de serie no puede estar vacÌo.");
+        if (strlen(v.noSerie) == 0) throw runtime_error("El n√∫mero de serie no puede estar vac√≠o.");
 
         ofstream f("vehiculos.bin", ios::binary | ios::app);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
         f.write((char*)&v, sizeof(Vehiculo));
         f.close();
-        cout << "VehÌculo registrado exitosamente." << endl;
+        cout << "Veh√≠culo registrado exitosamente." << endl;
     } catch (const exception& e) {
         cin.clear(); cin.ignore(10000, '\n');
         cerr << "Error: " << e.what() << endl;
@@ -102,7 +108,7 @@ void LeerVehiculo() {
             cout << "Marca: " << v.marca << endl;
             cout << "Anio: " << v.anio << endl;
             cout << "Color: " << v.color << endl;
-            cout << "N˙mero de serie: " << v.noSerie << endl;
+            cout << "N√∫mero de serie: " << v.noSerie << endl;
             cout << "------------------------" << endl;
         }
         f.close();
@@ -131,33 +137,33 @@ void EditarVehiculo() {
                 encontrado = true;
                 cout << "Ingrese nuevo modelo: ";
                 cin.getline(v.modelo, 25);
-                if (strlen(v.modelo) == 0) throw runtime_error("El modelo no puede estar vacÌo.");
+                if (strlen(v.modelo) == 0) throw runtime_error("El modelo no puede estar vac√≠o.");
 
                 cout << "Ingrese nueva marca: ";
                 cin.getline(v.marca, 25);
-                if (strlen(v.marca) == 0) throw runtime_error("La marca no puede estar vacÌa.");
+                if (strlen(v.marca) == 0) throw runtime_error("La marca no puede estar vac√≠a.");
 
                 cout << "Ingrese nuevo anio: ";
-                if (!(cin >> v.anio)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+                if (!(cin >> v.anio)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
                 cin.ignore();
 
                 cout << "Ingrese nuevo color: ";
                 cin.getline(v.color, 20);
-                if (strlen(v.color) == 0) throw runtime_error("El color no puede estar vacÌo.");
+                if (strlen(v.color) == 0) throw runtime_error("El color no puede estar vac√≠o.");
 
-                cout << "Ingrese nuevo n˙mero de serie: ";
+                cout << "Ingrese nuevo n√∫mero de serie: ";
                 cin.getline(v.noSerie, 30);
-                if (strlen(v.noSerie) == 0) throw runtime_error("El n˙mero de serie no puede estar vacÌo.");
+                if (strlen(v.noSerie) == 0) throw runtime_error("El n√∫mero de serie no puede estar vac√≠o.");
             }
             aTemporal.write((char*)&v, sizeof(Vehiculo));
         }
         aOrigen.close();
         aTemporal.close();
 
-        if (!encontrado) throw runtime_error("VehÌculo no encontrado.");
+        if (!encontrado) throw runtime_error("Veh√≠culo no encontrado.");
         remove("vehiculos.bin");
         rename("vehiculostemp.bin", "vehiculos.bin");
-        cout << "El vehÌculo ha sido modificado correctamente." << endl;
+        cout << "El veh√≠culo ha sido modificado correctamente." << endl;
     } catch (const exception& e) {
         cin.clear(); cin.ignore(10000, '\n');
         cerr << "Error: " << e.what() << endl;
@@ -186,13 +192,13 @@ void BuscarVehiculo() {
                 cout << "Marca: " << v.marca << endl;
                 cout << "Anio: " << v.anio << endl;
                 cout << "Color: " << v.color << endl;
-                cout << "N˙mero de serie: " << v.noSerie << endl;
+                cout << "N√∫mero de serie: " << v.noSerie << endl;
                 cout << "------------------------" << endl;
                 break;
             }
         }
         f.close();
-        if (!encontrado) throw runtime_error("VehÌculo no encontrado.");
+        if (!encontrado) throw runtime_error("Veh√≠culo no encontrado.");
     } catch (const exception& e) {
         cin.clear(); cin.ignore(10000, '\n');
         cerr << "Error: " << e.what() << endl;
@@ -226,8 +232,8 @@ void EliminarVehiculo() {
 
         remove("vehiculos.bin");
         rename("vehiculostemp.bin", "vehiculos.bin");
-        if (!encontrado) throw runtime_error("VehÌculo no encontrado.");
-        cout << "El vehÌculo ha sido eliminado correctamente." << endl;
+        if (!encontrado) throw runtime_error("Veh√≠culo no encontrado.");
+        cout << "El veh√≠culo ha sido eliminado correctamente." << endl;
     } catch (const exception& e) {
         cin.clear(); cin.ignore(10000, '\n');
         cerr << "Error: " << e.what() << endl;
@@ -241,28 +247,28 @@ void CrearTrabajador() {
     cin.ignore();
     try {
         cout << "Ingrese el ID del trabajador: ";
-        if (!(cin >> t.id)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> t.id)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el nombre del trabajador: ";
         cin.getline(t.nombre, 25);
-        if (strlen(t.nombre) == 0) throw runtime_error("El nombre no puede estar vacÌo.");
+        if (strlen(t.nombre) == 0) throw runtime_error("El nombre no puede estar vac√≠o.");
 
         cout << "Ingrese los apellidos del trabajador: ";
         cin.getline(t.apellidos, 25);
-        if (strlen(t.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vacÌos.");
+        if (strlen(t.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vac√≠os.");
 
         cout << "Ingrese el puesto del trabajador: ";
         cin.getline(t.puesto, 30);
-        if (strlen(t.puesto) == 0) throw runtime_error("El puesto no puede estar vacÌo.");
+        if (strlen(t.puesto) == 0) throw runtime_error("El puesto no puede estar vac√≠o.");
 
         cout << "Ingrese el salario del trabajador: ";
-        if (!(cin >> t.salario)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> t.salario)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
-        cout << "Ingrese el telÈfono del trabajador: ";
+        cout << "Ingrese el tel√©fono del trabajador: ";
         cin.getline(t.telefono, 15);
-        if (strlen(t.telefono) == 0) throw runtime_error("El telÈfono no puede estar vacÌo.");
+        if (strlen(t.telefono) == 0) throw runtime_error("El tel√©fono no puede estar vac√≠o.");
 
         ofstream f("trabajadores.bin", ios::binary | ios::app);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -288,7 +294,7 @@ void LeerTrabajador() {
             cout << "Apellidos: " << t.apellidos << endl;
             cout << "Puesto: " << t.puesto << endl;
             cout << "Salario: " << t.salario << endl;
-            cout << "TelÈfono: " << t.telefono << endl;
+            cout << "Tel√©fono: " << t.telefono << endl;
             cout << "------------------------" << endl;
         }
         f.close();
@@ -305,7 +311,7 @@ void EditarTrabajador() {
 
     try {
         cout << "Ingrese el ID del trabajador a editar: ";
-        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         ifstream aOrigen("trabajadores.bin", ios::binary);
@@ -317,23 +323,23 @@ void EditarTrabajador() {
                 encontrado = true;
                 cout << "Ingrese nuevo nombre: ";
                 cin.getline(t.nombre, 25);
-                if (strlen(t.nombre) == 0) throw runtime_error("El nombre no puede estar vacÌo.");
+                if (strlen(t.nombre) == 0) throw runtime_error("El nombre no puede estar vac√≠o.");
 
                 cout << "Ingrese nuevos apellidos: ";
                 cin.getline(t.apellidos, 25);
-                if (strlen(t.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vacÌos.");
+                if (strlen(t.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vac√≠os.");
 
                 cout << "Ingrese nuevo puesto: ";
                 cin.getline(t.puesto, 30);
-                if (strlen(t.puesto) == 0) throw runtime_error("El puesto no puede estar vacÌo.");
+                if (strlen(t.puesto) == 0) throw runtime_error("El puesto no puede estar vac√≠o.");
 
                 cout << "Ingrese nuevo salario: ";
-                if (!(cin >> t.salario)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+                if (!(cin >> t.salario)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
                 cin.ignore();
 
-                cout << "Ingrese nuevo telÈfono: ";
+                cout << "Ingrese nuevo tel√©fono: ";
                 cin.getline(t.telefono, 15);
-                if (strlen(t.telefono) == 0) throw runtime_error("El telÈfono no puede estar vacÌo.");
+                if (strlen(t.telefono) == 0) throw runtime_error("El tel√©fono no puede estar vac√≠o.");
             }
             aTemporal.write((char*)&t, sizeof(Trabajador));
         }
@@ -358,7 +364,7 @@ void BuscarTrabajador() {
 
     try {
         cout << "Ingrese el ID del trabajador a buscar: ";
-        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream f("trabajadores.bin", ios::binary);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -371,7 +377,7 @@ void BuscarTrabajador() {
                 cout << "Apellidos: " << t.apellidos << endl;
                 cout << "Puesto: " << t.puesto << endl;
                 cout << "Salario: " << t.salario << endl;
-                cout << "TelÈfono: " << t.telefono << endl;
+                cout << "Tel√©fono: " << t.telefono << endl;
                 cout << "------------------------" << endl;
                 break;
             }
@@ -392,7 +398,7 @@ void EliminarTrabajador() {
 
     try {
         cout << "Ingrese el ID del trabajador a eliminar: ";
-        if (!(cin >> idEliminar)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idEliminar)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream aOrigen("trabajadores.bin", ios::binary);
         ofstream aTemporal("trabajadorestemp.bin", ios::binary);
@@ -424,28 +430,28 @@ void CrearCliente() {
     cin.ignore();
     try {
         cout << "Ingrese el DPI del cliente: ";
-        if (!(cin >> c.dpi)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> c.dpi)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el nombre del cliente: ";
         cin.getline(c.nombre, 25);
-        if (strlen(c.nombre) == 0) throw runtime_error("El nombre no puede estar vacÌo.");
+        if (strlen(c.nombre) == 0) throw runtime_error("El nombre no puede estar vac√≠o.");
 
         cout << "Ingrese los apellidos del cliente: ";
         cin.getline(c.apellidos, 25);
-        if (strlen(c.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vacÌos.");
+        if (strlen(c.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vac√≠os.");
 
-        cout << "Ingrese el telÈfono del cliente: ";
-        if (!(cin >> c.telefono)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        cout << "Ingrese el tel√©fono del cliente: ";
+        if (!(cin >> c.telefono)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el correo del cliente: ";
         cin.getline(c.correo, 50);
-        if (strlen(c.correo) == 0) throw runtime_error("El correo no puede estar vacÌo.");
+        if (strlen(c.correo) == 0) throw runtime_error("El correo no puede estar vac√≠o.");
 
-        cout << "Ingrese la direcciÛn del cliente: ";
+        cout << "Ingrese la direcci√≥n del cliente: ";
         cin.getline(c.direccion, 100);
-        if (strlen(c.direccion) == 0) throw runtime_error("La direcciÛn no puede estar vacÌa.");
+        if (strlen(c.direccion) == 0) throw runtime_error("La direcci√≥n no puede estar vac√≠a.");
 
         ofstream f("clientes.bin", ios::binary | ios::app);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -469,9 +475,9 @@ void LeerCliente() {
             cout << "DPI: " << c.dpi << endl;
             cout << "Nombre: " << c.nombre << endl;
             cout << "Apellidos: " << c.apellidos << endl;
-            cout << "TelÈfono: " << c.telefono << endl;
+            cout << "Tel√©fono: " << c.telefono << endl;
             cout << "Correo: " << c.correo << endl;
-            cout << "DirecciÛn: " << c.direccion << endl;
+            cout << "Direcci√≥n: " << c.direccion << endl;
             cout << "------------------------" << endl;
         }
         f.close();
@@ -488,7 +494,7 @@ void EditarCliente() {
 
     try {
         cout << "Ingrese el DPI del cliente a editar: ";
-        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         ifstream aOrigen("clientes.bin", ios::binary);
@@ -500,24 +506,24 @@ void EditarCliente() {
                 encontrado = true;
                 cout << "Ingrese nuevo nombre: ";
                 cin.getline(c.nombre, 25);
-                if (strlen(c.nombre) == 0) throw runtime_error("El nombre no puede estar vacÌo.");
+                if (strlen(c.nombre) == 0) throw runtime_error("El nombre no puede estar vac√≠o.");
 
                 cout << "Ingrese nuevos apellidos: ";
                 cin.getline(c.apellidos, 25);
-                if (strlen(c.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vacÌos.");
+                if (strlen(c.apellidos) == 0) throw runtime_error("Los apellidos no pueden estar vac√≠os.");
 
-                cout << "Ingrese el telÈfono del cliente: ";
-                if (!(cin >> c.telefono)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+                cout << "Ingrese el tel√©fono del cliente: ";
+                if (!(cin >> c.telefono)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
                 cin.ignore();
 
 
                 cout << "Ingrese nuevo correo: ";
                 cin.getline(c.correo, 50);
-                if (strlen(c.correo) == 0) throw runtime_error("El correo no puede estar vacÌo.");
+                if (strlen(c.correo) == 0) throw runtime_error("El correo no puede estar vac√≠o.");
 
-                cout << "Ingrese nueva direcciÛn: ";
+                cout << "Ingrese nueva direcci√≥n: ";
                 cin.getline(c.direccion, 100);
-                if (strlen(c.direccion) == 0) throw runtime_error("La direcciÛn no puede estar vacÌa.");
+                if (strlen(c.direccion) == 0) throw runtime_error("La direcci√≥n no puede estar vac√≠a.");
             }
             aTemporal.write((char*)&c, sizeof(Cliente));  // Cambiado de Trabajador a Contacto
         }
@@ -542,7 +548,7 @@ void BuscarCliente() {
 
     try {
         cout << "Ingrese el DPI del cliente a buscar: ";
-        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream f("clientes.bin", ios::binary);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -550,11 +556,11 @@ void BuscarCliente() {
         while (f.read((char*)&c, sizeof(Cliente))) {
             if (c.dpi == dpibuscado) {
                 encontrado = true;
-                cout << "TelÈfono: " << c.telefono << endl;
+                cout << "Tel√©fono: " << c.telefono << endl;
                 cout << "Nombre: " << c.nombre << endl;
                 cout << "Apellidos: " << c.apellidos << endl;
                 cout << "Correo: " << c.correo << endl;
-                cout << "DirecciÛn: " << c.direccion << endl;
+                cout << "Direcci√≥n: " << c.direccion << endl;
                 cout << "------------------------" << endl;
                 break;
             }
@@ -575,7 +581,7 @@ void EliminarCliente() {
 
     try {
         cout << "Ingrese el DPI del cliente a eliminar: ";
-        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> dpibuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream aOrigen("clientes.bin", ios::binary);
         ofstream aTemporal("clientestemp.bin", ios::binary);
@@ -608,32 +614,32 @@ void CrearCita() {
     cin.ignore();
     try {
         cout << "Ingrese el ID de la cita: ";
-        if (!(cin >> c.id)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> c.id)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el DPI del cliente: ";
-        if (!(cin >> c.idCliente)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> c.idCliente)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         cout << "Ingrese el ID del trabajador: ";
-        if (!(cin >> c.idTrabajador)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> c.idTrabajador)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
-        cout << "Ingrese la placa del vehÌculo: ";
+        cout << "Ingrese la placa del veh√≠culo: ";
         cin.getline(c.placaVehiculo, 15);
-        if (strlen(c.placaVehiculo) == 0) throw runtime_error("La placa no puede estar vacÌa.");
+        if (strlen(c.placaVehiculo) == 0) throw runtime_error("La placa no puede estar vac√≠a.");
 
         cout << "Ingrese la fecha (DD/MM/AAAA): ";
         cin.getline(c.fecha, 20);
-        if (strlen(c.fecha) == 0) throw runtime_error("La fecha no puede estar vacÌa.");
+        if (strlen(c.fecha) == 0) throw runtime_error("La fecha no puede estar vac√≠a.");
 
         cout << "Ingrese la hora (HH:MM): ";
         cin.getline(c.hora, 10);
-        if (strlen(c.hora) == 0) throw runtime_error("La hora no puede estar vacÌa.");
+        if (strlen(c.hora) == 0) throw runtime_error("La hora no puede estar vac√≠a.");
 
-        cout << "Ingrese la descripciÛn del servicio: ";
+        cout << "Ingrese la descripci√≥n del servicio: ";
         cin.getline(c.descripcion, 200);
-        if (strlen(c.descripcion) == 0) throw runtime_error("La descripciÛn no puede estar vacÌa.");
+        if (strlen(c.descripcion) == 0) throw runtime_error("La descripci√≥n no puede estar vac√≠a.");
 
         ofstream f("citas.bin", ios::binary | ios::app);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -657,10 +663,10 @@ void LeerCita() {
             cout << "ID Cita: " << c.id << endl;
             cout << "DPI Cliente: " << c.idCliente << endl;
             cout << "ID Trabajador: " << c.idTrabajador << endl;
-            cout << "Placa VehÌculo: " << c.placaVehiculo << endl;
+            cout << "Placa Veh√≠culo: " << c.placaVehiculo << endl;
             cout << "Fecha: " << c.fecha << endl;
             cout << "Hora: " << c.hora << endl;
-            cout << "DescripciÛn: " << c.descripcion << endl;
+            cout << "Descripci√≥n: " << c.descripcion << endl;
             cout << "Estado: " << c.estado << endl;
             cout << "------------------------" << endl;
         }
@@ -678,7 +684,7 @@ void EditarCita() {
 
     try {
         cout << "Ingrese el ID de la cita a editar: ";
-        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
         cin.ignore();
 
         ifstream aOrigen("citas.bin", ios::binary);
@@ -689,32 +695,32 @@ void EditarCita() {
             if (c.id == idBuscado) {
                 encontrado = true;
                 cout << "Ingrese nuevo ID de cliente: ";
-                if (!(cin >> c.idCliente)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+                if (!(cin >> c.idCliente)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
                 cin.ignore();
 
                 cout << "Ingrese nuevo ID de trabajador: ";
-                if (!(cin >> c.idTrabajador)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+                if (!(cin >> c.idTrabajador)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
                 cin.ignore();
 
-                cout << "Ingrese nueva placa de vehÌculo: ";
+                cout << "Ingrese nueva placa de veh√≠culo: ";
                 cin.getline(c.placaVehiculo, 15);
-                if (strlen(c.placaVehiculo) == 0) throw runtime_error("La placa no puede estar vacÌa.");
+                if (strlen(c.placaVehiculo) == 0) throw runtime_error("La placa no puede estar vac√≠a.");
 
                 cout << "Ingrese nueva fecha (DD/MM/AAAA): ";
                 cin.getline(c.fecha, 20);
-                if (strlen(c.fecha) == 0) throw runtime_error("La fecha no puede estar vacÌa.");
+                if (strlen(c.fecha) == 0) throw runtime_error("La fecha no puede estar vac√≠a.");
 
                 cout << "Ingrese nueva hora (HH:MM): ";
                 cin.getline(c.hora, 10);
-                if (strlen(c.hora) == 0) throw runtime_error("La hora no puede estar vacÌa.");
+                if (strlen(c.hora) == 0) throw runtime_error("La hora no puede estar vac√≠a.");
 
-                cout << "Ingrese nueva descripciÛn: ";
+                cout << "Ingrese nueva descripci√≥n: ";
                 cin.getline(c.descripcion, 200);
-                if (strlen(c.descripcion) == 0) throw runtime_error("La descripciÛn no puede estar vacÌa.");
+                if (strlen(c.descripcion) == 0) throw runtime_error("La descripci√≥n no puede estar vac√≠a.");
 
                 cout << "Ingrese nuevo estado: ";
                 cin.getline(c.estado, 20);
-                if (strlen(c.estado) == 0) throw runtime_error("El estado no puede estar vacÌo.");
+                if (strlen(c.estado) == 0) throw runtime_error("El estado no puede estar vac√≠o.");
             }
             aTemporal.write((char*)&c, sizeof(Cita));
         }
@@ -739,7 +745,7 @@ void BuscarCita() {
 
     try {
         cout << "Ingrese el ID de la cita a buscar: ";
-        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idBuscado)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream f("citas.bin", ios::binary);
         if (!f.is_open()) throw runtime_error("Error de apertura de archivo.");
@@ -750,10 +756,10 @@ void BuscarCita() {
                 cout << "ID Cita: " << c.id << endl;
                 cout << "ID Cliente: " << c.idCliente << endl;
                 cout << "ID Trabajador: " << c.idTrabajador << endl;
-                cout << "Placa VehÌculo: " << c.placaVehiculo << endl;
+                cout << "Placa Veh√≠culo: " << c.placaVehiculo << endl;
                 cout << "Fecha: " << c.fecha << endl;
                 cout << "Hora: " << c.hora << endl;
-                cout << "DescripciÛn: " << c.descripcion << endl;
+                cout << "Descripci√≥n: " << c.descripcion << endl;
                 cout << "Estado: " << c.estado << endl;
                 cout << "------------------------" << endl;
                 break;
@@ -775,7 +781,7 @@ void EliminarCita() {
 
     try {
         cout << "Ingrese el ID de la cita a eliminar: ";
-        if (!(cin >> idEliminar)) throw runtime_error("Debe ingresar un n˙mero v·lido.");
+        if (!(cin >> idEliminar)) throw runtime_error("Debe ingresar un n√∫mero v√°lido.");
 
         ifstream aOrigen("citas.bin", ios::binary);
         ofstream aTemporal("citastemp.bin", ios::binary);
